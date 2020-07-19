@@ -10,4 +10,4 @@ spec:
     storage: 10Gi
   persistentVolumeReclaimPolicy: Retain
   gcePersistentDisk:
-    pdName: Uber-disk
+    pdName: uber-disk
