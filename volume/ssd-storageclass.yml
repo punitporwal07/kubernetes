@@ -9,4 +9,4 @@ provisioner: kubernetes.io/gce-pd
 parameters:
   type: pd-ssd
   zone: us-central-c
-  iosPerGB: "10"
+  
