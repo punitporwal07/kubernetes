@@ -1,4 +1,4 @@
-# service types used is nodePort with container port 80 and image port 8000
+# when running this service locally use : service types as NodePort with container port 31000 and image port 8000
 apiVersion: v1
 kind: Service
 metadata:
@@ -8,7 +8,7 @@ spec:
   ports:
   - port: 80
     targetPort: 8000
-    nodePort: 31111
+    nodePort: 31000
     protocol: TCP
   selector:
     app: web
