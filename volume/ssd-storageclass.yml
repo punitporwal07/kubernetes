@@ -1,0 +1,11 @@
+##  The following manifest, describes a StorageClass named faster with an SSD persistent disk. PersistentVolumeClaims made with this StorageClass are backed by SSDs.
+# ssd-storageclass.yaml
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: faster
+provisioner: kubernetes.io/gce-pd
+parameters:
+  type: pd-ssd
+  zone: us-central-c
+  iosPerGB: "10"
