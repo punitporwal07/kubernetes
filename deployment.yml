@@ -8,7 +8,7 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: web
+      run: web                              > this tells the deployment to select pods with this label
   replicas: 5
   minReadySeconds: 10
   strategy:                                 > responsible to update your deployment & scale the pods to newer version and delete older one
@@ -19,7 +19,7 @@ spec:
   template:
     metadata:
       labels:
-        app: web
+        run: web                            > this label is attached to all pods started with this deployment
     spec: 
       terminationGracePeriodSeconds: 1
       containers:                           > responsible to deploy your container. Pull from hub and deploy to your cluster
