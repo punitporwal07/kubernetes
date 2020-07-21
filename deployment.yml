@@ -11,11 +11,11 @@ spec:
       app: web
   replicas: 5
   minReadySeconds: 10
-  strategy:                                > responsible to update your deployment & scale the pods to newer version and delete older one
+  strategy:                                 > responsible to update your deployment & scale the pods to newer version and delete older one
     type: RollingUpdate                 
     rollingUpdate:
-      maxUnavailable: 1                    > optional field that specifies the maximum number of Pods that can be unavailable during the update process. value can be absolute or percentage of desired Pods
-      maxSurge: 1                          > optional field that specifies the maximum number of Pods that can be created over the desired number of Pods. value can be absolute or percentage of desired Pods
+      maxUnavailable: 1                     > optional field that specifies the maximum number of Pods that can be unavailable during the update process. value can be absolute or percentage of desired Pods
+      maxSurge: 1                           > optional field that specifies the maximum number of Pods that can be created over the desired number of Pods. value can be absolute or percentage of desired Pods
   template:
     metadata:
       labels:
