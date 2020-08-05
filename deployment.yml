@@ -28,3 +28,8 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 8000
+        resources:                          > responsible to do autoScalling of nodes hosting your container
+          limits: 
+            cpu: 1
+          requests:                         > asking for half cpu for every replica and if node busy to run pods it will spin up new node
+            cpu: 0.5
