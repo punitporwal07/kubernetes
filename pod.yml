@@ -19,6 +19,8 @@ kind: Pod
 metadata:
   name: ibmmq
   namespace: mq
+  labels: 
+    app: mq
 spec:
   containers:
     - name: mq-container
