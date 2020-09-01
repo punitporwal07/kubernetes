@@ -33,3 +33,38 @@ spec:
             cpu: 1
           requests:                         > asking for half cpu for every replica and if node is busy to run pods it will spin up a new node
             cpu: 0.5
+...
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mq-deployment
+  namespace: mq
+  labels:
+    app: mq
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      run: mq
+  template:
+    metadata:
+      labels:
+        run: mq
+    spec:
+      containers:
+      - name: mq-container
+        image: "registry/middleware/ibmmq:9.1.5.0"
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 1414
+          protocol: TCP
+        - containerPort: 9443
+          protocol: TCP
+        env:
+          - name: LICENSE
+            value: accept
+          - name: MQ_QMGR_NAME
+            value: QM1
+...
