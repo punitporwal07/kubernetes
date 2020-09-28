@@ -1,3 +1,5 @@
+---
+### A sample PV manifest will look like
 apiVersion: v1
 kind: PersistentVolume
 metadata:
@@ -8,3 +10,26 @@ spec:
   storageClassName: ssd
   capacity:
     storage: 10Gi
+...
+
+---
+### PV used in domain-on-pv in Oracle Kubernetes Operator
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: weblogic-sample-pv
+  # labels:
+  #   weblogic.domainUID:
+spec:
+  storageClassName: weblogic-sample-storage-class
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteMany
+  # Valid values are Retain, Delete or Recycle
+  persistentVolumeReclaimPolicy: Retain
+  hostPath:
+  # nfs:
+    # server: %SAMPLE_STORAGE_NFS_SERVER%
+    path: "/scratch/k8s_dir"
+ ...
