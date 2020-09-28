@@ -17,10 +17,12 @@ spec:
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: weblogic-sample-pvc
-  namespace: default
-
-  storageClassName: weblogic-sample-storage-class
+  name: domain1-weblogic-sample-pvc
+  namespace: my-cluster
+  labels:
+    weblogic.domainUID: domain1
+spec:
+  storageClassName: domain1-weblogic-sample-storage-class
   accessModes:
     - ReadWriteMany
   resources:
