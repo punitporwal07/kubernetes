@@ -13,15 +13,14 @@ spec:
 ...
 
 ---
-### PV used in domain-on-pv in Oracle Kubernetes Operator
-apiVersion: v1
+### PV used in domain-on-pv in Oracle Kubernetes OperatorapiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: weblogic-sample-pv
-  # labels:
-  #   weblogic.domainUID:
+  name: domain1-weblogic-sample-pv
+  labels:
+    weblogic.domainUID: domain1
 spec:
-  storageClassName: weblogic-sample-storage-class
+  storageClassName: domain1-weblogic-sample-storage-class
   capacity:
     storage: 10Gi
   accessModes:
@@ -30,6 +29,6 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   hostPath:
   # nfs:
-    # server: %SAMPLE_STORAGE_NFS_SERVER%
+  # server: %SAMPLE_STORAGE_NFS_SERVER%
     path: "/scratch/k8s_dir"
  ...
