@@ -1,3 +1,5 @@
+---
+### A sample PVC manifest will look like
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -8,3 +10,20 @@ spec:
   storageClassName: ssd
   capacity:
     storage: 10Gi
+...
+
+---
+### A PVC manifest to use in Oracle Kubernetes Operator
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: weblogic-sample-pvc
+  namespace: default
+
+  storageClassName: weblogic-sample-storage-class
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 10Gi
+...
