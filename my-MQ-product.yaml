@@ -1,0 +1,64 @@
+### A complete yaml which includes creating Namespace, Deployment of IBM-MQ image & exposing it as NodePort service
+##
+#
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: mq
+...
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mq-deployment
+  namespace: mq
+  labels:
+    app: mq
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      run: nodeport-mq
+  template:
+    metadata:
+      labels:
+        run: nodeport-mq
+    spec:
+      containers:
+      - name: mq-container
+        image: "registry.docker.com/middleware/ibmmq:9.1.5.0"
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 1414
+          protocol: TCP
+        - containerPort: 9443
+          protocol: TCP
+        env:
+          - name: LICENSE
+            value: accept
+          - name: MQ_QMGR_NAME
+            value: QM1
+...
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mq-svc-np
+  labels:
+    run: nodeport-mq
+spec:
+  type: NodePort
+  selector:
+    run: nodeport-mq
+  ports:
+    - name: qm
+      protocol: TCP
+      port: 1414
+      targetPort: 1414
+#      nodePort: 30001
+    - name: webserver
+      protocol: TCP
+      port: 9443
+      targetPort: 9443
+#      nodePort: 30002
+...
