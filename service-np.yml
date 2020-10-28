@@ -1,4 +1,4 @@
-# when running this service locally use : service types as NodePort with container port 31000 and image port 8000
+# A sample service YAML file with type as NodePort with port forwarding from NP(30001) > CP(1414) & NP(30002) > CP(9443)
 ---
 apiVersion: v1
 kind: Service
