@@ -1,15 +1,25 @@
 # when running this service locally use : service types as NodePort with container port 31000 and image port 8000
+---
 apiVersion: v1
 kind: Service
 metadata:
-  name: ps-nodeport
+  name: my-svc-np
+  labels:
+    run: nodeport-my                >> imp to match with your deployment label
 spec:
   type: NodePort
-  ports:
-  - port: 80
-    targetPort: 8000
-    nodePort: 31000
-    protocol: TCP
   selector:
-    app: web
-    
+    run: nodeport-my                >> imp to match with your deployment label
+  ports:
+    - name: qm
+      protocol: TCP
+      port: 1414
+      targetPort: 1414
+      nodePort: 30001
+    - name: webserver
+      protocol: TCP
+      port: 9443
+      targetPort: 9443
+      nodePort: 30002
+...
+
