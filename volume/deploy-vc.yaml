@@ -34,7 +34,8 @@ spec:
         - name: lv
           mountPath: /mnt
       securityContext:
-        fsGroup: 20000
+#        fsGroup: 20000
+        runAsUser: 0
       volumes:
       - name: lv
         persistentVolumeClaim:
