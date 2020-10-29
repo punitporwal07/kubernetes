@@ -1,0 +1,41 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mqlv-deployment
+  namespace: mqv
+  labels:
+    app: mqv
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      run: nodeport-mqv
+  template:
+    metadata:
+      labels:
+        run: nodeport-mqv
+    spec:
+      containers:
+      - name: mq-container
+        image: "registry.docker.com/middleware/ibmmq:9.1.5.0"
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 1414
+          protocol: TCP
+        - containerPort: 9443
+          protocol: TCP
+        env:
+          - name: LICENSE
+            value: accept
+          - name: MQ_QMGR_NAME
+            value: QM1
+        volumeMounts:                 >>     at the point you can call your local Volume to deployment
+        - name: lv
+          mountPath: /mnt
+      securityContext:
+        fsGroup: 20000
+      volumes:
+      - name: lv
+        persistentVolumeClaim:
+          claimName: mq-pvc
