@@ -1,14 +1,24 @@
 ## any container deployed to my-ns namespace that doesn’t have a limit set will get the limit of 512Mi.
 #
 apiVersion: v1  
- kind: LimitRange  
- metadata:  
-   name: mem-limit-range
-   namespace: my-ns
- spec:  
-   limits:  
-   - default:  
-       memory: 512Mi  
-     defaultRequest:  
-       memory: 256Mi  
-     type: Container
+kind: LimitRange  
+metadata:  
+  name: mem-limit-range
+  namespace: my-ns
+spec:  
+  limits:  
+  - default:  
+      memory: 512Mi  
+    defaultRequest:  
+      memory: 256Mi  
+    type: Container
+    
+    
+#######RESULT########   
+#$ kubectl describe limitrange
+#  Name:       mem-limit-range
+# Namespace:  mq
+# Type        Resource  Min  Max  Default Request  Default Limit  Max Limit/Request Ratio
+# ----        --------  ---  ---  ---------------  -------------  -----------------------
+# Container   memory    -    -    256Mi            512Mi          -
+
