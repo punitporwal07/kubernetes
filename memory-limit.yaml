@@ -17,7 +17,7 @@ spec:
 #######RESULT########   
 #$ kubectl describe limitrange
 #  Name:       mem-limit-range
-# Namespace:  mq
+# Namespace:  my-ns
 # Type        Resource  Min  Max  Default Request  Default Limit  Max Limit/Request Ratio
 # ----        --------  ---  ---  ---------------  -------------  -----------------------
 # Container   memory    -    -    256Mi            512Mi          -
