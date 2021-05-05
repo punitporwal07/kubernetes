@@ -1,0 +1,33 @@
+# .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+        . /etc/bashrc
+fi
+
+# Uncomment the following line if you don't like systemctl's auto-paging feature:
+# export SYSTEMD_PAGER=
+
+# User specific aliases and functions
+export GPG_TTY=$(tty)
+
+alias d='docker'
+alias di='docker images'
+alias j='sudo journalctl -u kubelet'
+alias k='kubectl'
+alias ka='kubectl apply -f'
+alias kd='kubectl delete'
+alias kdad='kubectl delete --all deploy'
+alias kdap='kubectl delete --all pod'
+alias kdec='kubectl describe'
+alias kde='kubectl get deploy'
+alias kl='kubectl logs'
+alias kn='kubectl get nodes'
+alias kp='kubectl get pods'
+alias kre='sudo systemctl restart kubelet'
+alias kns='kubectl config view  --minify | grep -i namespace'
+alias kstat='systemctl status kubelet'
+
+cd /software/k8s/
+clear
+pwd
